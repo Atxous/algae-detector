@@ -34,8 +34,6 @@ if __name__ == "__main__":
             index = np.argmax(circles[:,2])
             x_pos = circles[index][0]
             y_pos = circles[index][1]
-            cv2.circle(frame, (x_pos, y_pos), 5, (0, 255, 0), 2)
-            cv2.circle(frame, (x_pos, y_pos), circles[index][2], (255, 0, 255), 3)
 
-        cv2.imshow("frame", frame)
-        cv2.waitKey(0)
+            # Get the pixel difference between the center of the image and the center of the circle
+            x_diff = x_pos - frame.shape[1] // 2
