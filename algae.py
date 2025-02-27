@@ -1,8 +1,13 @@
 import cv2
 import numpy as np
+import ntcore
 
 lower = np.array([79, 41, 92])
 upper = np.array([94, 255, 255])
+
+inst = ntcore.NetworkTableInstance.getDefault()
+table = inst.getTable("jason")
+algae_topic = table.getDoubleTopic("algaeXDiff")
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
@@ -37,3 +42,4 @@ if __name__ == "__main__":
 
             # Get the pixel difference between the center of the image and the center of the circle
             x_diff = x_pos - frame.shape[1] // 2
+            algae_topic.set(x_diff)
